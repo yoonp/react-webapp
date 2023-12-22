@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  height: 10vmax;
+  width: 600px;
   pointer-events: none;
 }
 
@@ -13,13 +13,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 10px;
 }
 
 .title {
   width: 100%;
   height: 120px;
-  font-size: 2vmin;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,6 +26,14 @@
 
 .title h1 {
   margin-top: 80px; /* Remove default margin to avoid extra space */
+  font-size: 32px;
+}
+
+.form {
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
 }
 
 .button {
@@ -38,14 +45,14 @@
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-columns: 1fr 2fr;
   margin: 20px 0 20px 0;
-  font-size: 1.5vmax;
+  font-size: 22px;
   justify-items: left;
   align-items: center;
 }
 
 input {
-  width: 3.2vmax;
-  height: 2vmax;
+  width: 50px;
+  height: 30px;
 }
 
 .label {
@@ -62,6 +69,7 @@ input {
   border: 1px solid black;
   width: 500px;
   height: 240px;
+  margin: 20px auto;
 }
 
 .calculate-button {
@@ -71,11 +79,84 @@ input {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 3.6vmin;
+  font-size: 18px;
   background-color: #e7e7e7;
   color: grey;
 }
 
 .calculate-button:hover {
   background-color: #2b2c2b; /* Darker grey color on hover */
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .App-logo {
+    width: 481px;
+  }
+
+  .title h1 {
+    margin-top: 60px; /* Remove default margin to avoid extra space */
+    font-size: 28px;
+  }
+
+  .container {
+    margin: 15px 0 15px 0;
+    font-size: 18px;
+  }
+
+  .calculate-box {
+    width: 450px;
+    margin: 0 auto;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .App-logo {
+    width: 100%;
+  }
+
+  .title {
+    height: 80px;
+    display: flex;
+  }
+
+  .title h1 {
+    margin-top: 40px; /* Remove default margin to avoid extra space */
+    font-size: 20px;
+  }
+
+  .container {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    margin: 10px 0 10px 0;
+    font-size: 12px;
+    justify-items: left;
+    align-items: center;
+  }
+
+  .inputboxes {
+    position: relative;
+  }
+
+  .input {
+    position:relative;
+    width: 100%;
+    bottom: 15px;
+  }
+
+  .calculate-box {
+    width: 95%;
+    margin: 10px auto;
+  }
+
+  input {
+    width: 60px;
+    height: 25px;
+  }
+  
+  .input {
+    text-indent: 20px;
+  }
+
 }
