@@ -18,27 +18,21 @@ function App() {
           <form action="/action_page.php">
             <div className="calculate-box container">
               <div className="label">
-                {" "}
                 <label>Distance :</label>
               </div>
-              <div>
-                {" "}
+              <div className="inputboxes">
                 <Distance />
               </div>
               <div className="label">
-                {" "}
                 <label>Time :</label>
               </div>
-              <div>
-                {" "}
+              <div className="inputboxes">
                 <Time />
               </div>
               <div className="label">
-                {" "}
                 <label>Pace :</label>
               </div>
-              <div>
-                {" "}
+              <div className="inputboxes">
                 <Pace />
               </div>
             </div>
