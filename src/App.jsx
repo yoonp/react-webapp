@@ -28,11 +28,7 @@ const handleInputChange = (name, value) => {
       [name]: value,
     };
   });
-    console.log("Updated Form Data:", formData);
   };
-  useEffect(() => {
-    console.log("Updated Form Data:", formData);
-  }, [formData]);
 
   const resetForm = () => {
     setFormData(initialFormData);
@@ -45,16 +41,8 @@ const handleInputChange = (name, value) => {
   const clickButton = async () => {
     try {
       const { distance, hour, minute, second, paceMinute, paceSecond } = formData;
-      
-      console.log('Distance:', distance);
-      console.log('Hour:', hour);
-      console.log('Minute:', minute);
-      console.log('Second:', second);
-      console.log('PaceMinute:', paceMinute);
-      console.log('PaceSecond:', paceSecond);
-  
+        
       const url = `/calculate-pace?distance=${distance}&hour=${hour}&minute=${minute}&second=${second}&paceMinute=${paceMinute}&paceSecond=${paceSecond}`;
-      console.log('Constructed URL:', url);
       
       const response = await fetch(url, {
         method: 'GET',
@@ -68,7 +56,6 @@ const handleInputChange = (name, value) => {
       }
   
       const result = await response.json();
-      console.log('Pace Calculation Result:', result);
       setDistanceResult(result);
       setTimeResult(result);
       setPaceResult(result);    
