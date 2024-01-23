@@ -8,7 +8,7 @@ function Distance({onChange}) {
 
   return (
     <div className="input">
-      <input type="number" placeholder="km" min={0} max={59} onChange={handleChange}/>&nbsp;km
+      <input type="number" placeholder="km" min={0} onChange={handleChange}/>&nbsp;km
     </div>
   );
 }
