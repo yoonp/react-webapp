@@ -54,11 +54,11 @@ function Form() {
       const result = await response.json();
       console.log(result);
       setResult(result);
+      setIsCalculated(true);
     } catch (error) {
       console.error("Error:", error.message);
     }
 
-    setIsCalculated(true);
   };
 
 
