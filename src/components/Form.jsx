@@ -3,7 +3,6 @@ import Pace from "./Pace";
 import Time from "./Time";
 import Distance from "./Distance";
 import Button from "./Button";
-import {getFormattedTime, getFormattedPace} from "../Util/utils"
 
 function Form() {
   const initialFormData = {
@@ -34,7 +33,7 @@ function Form() {
     setResult(null);
   };
 
-  const clickButton = async () => {
+  const calculate = async () => {
     try {
       const { distance, hour, minute, second, paceMinute, paceSecond } =
         formData;
@@ -53,6 +52,7 @@ function Form() {
       }
 
       const result = await response.json();
+      console.log(result);
       setResult(result);
     } catch (error) {
       console.error("Error:", error.message);
@@ -69,48 +69,24 @@ function Form() {
           <div className="label">
             <label>Distance :</label>
           </div>
-          <div className="inputboxes">
-            {isCalculated ? (
-              <div className="input">{result?.distance} km</div>
-            ) : (
-              <Distance
-                isCalculated={isCalculated} onChange={(value) => handleInputChange("distance", value)}
-              />
-            )}
-          </div>
+          <Distance result={result} isCalculated={isCalculated} onChange={(value) => handleInputChange("distance", value)} />
           <div className="label">
             <label>Time :</label>
           </div>
-          <div className="inputboxes">
-            {isCalculated ? (
-              <div className="input">{getFormattedTime(result?.time)}</div>
-            ) : (
-              <Time
-                onChange={(hours, minutes, seconds) =>
+          <Time result={result} isCalculated={isCalculated} onChange={(hours, minutes, seconds) =>
                   handleInputChange("hour", hours) ||
                   handleInputChange("minute", minutes) ||
                   handleInputChange("second", seconds)
-                }
-              />
-            )}
-          </div>
+                } />
           <div className="label">
             <label>Pace :</label>
           </div>
-          <div className="inputboxes">
-            {isCalculated ? (
-              <div className="input">{getFormattedPace(result?.pace)}</div>
-            ) : (
-              <Pace
-                onChange={(minute, second) =>
+          <Pace result={result} isCalculated={isCalculated} onChange={(minute, second) =>
                   handleInputChange("paceMinute", minute) ||
                   handleInputChange("paceSecond", second)
-                }
-              />
-            )}
-          </div>
+                } />
         </div>
-        <Button onClick={isCalculated ? resetForm : clickButton} text={isCalculated ? "Reset" : "Calculate"}/>
+        <Button onClick={isCalculated ? resetForm : calculate} text={isCalculated ? "Reset" : "Calculate"}/>
       </form>
     </div>
   );
