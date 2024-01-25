@@ -1,29 +1,28 @@
 import React, { useState } from "react";
 
 function Time(props) {
-  const [hour, setHour] = useState(0);
-  const [minute, setMinute] = useState(0);
-  const [second, setSecond] = useState(0);
-
   const handleHourChange = (event) => {
     const value =
       event.target.value !== "" ? parseInt(event.target.value, 10) : 0;
-    setHour(value);
-    props.onChange && props.onChange(value, minute, second);
+    props.setFormData({ ...props.formData, hour: value });
+    props.onChange &&
+      props.onChange(value, props.formData.minute, props.formData.second);
   };
 
   const handleMinuteChange = (event) => {
     const value =
       event.target.value !== "" ? parseInt(event.target.value, 10) : 0;
-    setMinute(value);
-    props.onChange && props.onChange(hour, value, second);
+    props.setFormData({ ...props.formData, minute: value });
+    props.onChange &&
+      props.onChange(props.formData.hour, value, props.formData.second);
   };
 
   const handleSecondChange = (event) => {
     const value =
       event.target.value !== "" ? parseInt(event.target.value, 10) : 0;
-   setSecond(value);
-    props.onChange && props.onChange(hour, minute, value);
+    props.setFormData({ ...props.formData, second: value });
+    props.onChange &&
+      props.onChange(props.formData.hour, props.formData.minute, value);
   };
 
   return (

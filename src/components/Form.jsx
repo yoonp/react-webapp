@@ -58,9 +58,7 @@ function Form() {
     } catch (error) {
       console.error("Error:", error.message);
     }
-
   };
-
 
   return (
     <div className="form">
@@ -69,24 +67,43 @@ function Form() {
           <div className="label">
             <label>Distance :</label>
           </div>
-          <Distance result={result} isCalculated={isCalculated} onChange={(value) => handleInputChange("distance", value)} />
+          <Distance
+            result={result}
+            isCalculated={isCalculated}
+            onChange={(value) => handleInputChange("distance", value)}
+          />
           <div className="label">
             <label>Time :</label>
           </div>
-          <Time result={result} isCalculated={isCalculated} onChange={(hours, minutes, seconds) =>
-                  handleInputChange("hour", hours) ||
-                  handleInputChange("minute", minutes) ||
-                  handleInputChange("second", seconds)
-                } />
+          <Time
+            result={result}
+            isCalculated={isCalculated}
+            formData={formData}
+            setFormData={setFormData}
+            onChange={(hours, minutes, seconds) =>
+              handleInputChange("hour", hours) ||
+              handleInputChange("minute", minutes) ||
+              handleInputChange("second", seconds)
+            }
+          />
           <div className="label">
             <label>Pace :</label>
           </div>
-          <Pace result={result} isCalculated={isCalculated} onChange={(minute, second) =>
-                  handleInputChange("paceMinute", minute) ||
-                  handleInputChange("paceSecond", second)
-                } />
+          <Pace
+            result={result}
+            isCalculated={isCalculated}
+            formData={formData}
+            setFormData={setFormData}
+            onChange={(minute, second) =>
+              handleInputChange("paceMinute", minute) ||
+              handleInputChange("paceSecond", second)
+            }
+          />
         </div>
-        <Button onClick={isCalculated ? resetForm : calculate} text={isCalculated ? "Reset" : "Calculate"}/>
+        <Button
+          onClick={isCalculated ? resetForm : calculate}
+          text={isCalculated ? "Reset" : "Calculate"}
+        />
       </form>
     </div>
   );

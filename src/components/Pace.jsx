@@ -1,21 +1,18 @@
 import React, { useState } from "react";
 
 function Pace(props) {
-  const [minute, setMinute] = useState(0);
-  const [second, setSecond] = useState(0);
-
   const handleMinuteChange = (event) => {
     const value =
       event.target.value !== "" ? parseInt(event.target.value, 10) : 0;
-    setMinute(value);
-    props.onChange && props.onChange(value, second);
+      props.setFormData({ ...props.formData, paceMinute: value });
+      props.onChange && props.onChange(value, props.formData.paceSecond);
   };
 
   const handleSecondChange = (event) => {
     const value =
       event.target.value !== "" ? parseInt(event.target.value, 10) : 0;
-    setSecond(value);
-    props.onChange && props.onChange(minute, value);
+      props.setFormData({ ...props.formData, paceSecond: value });
+      props.onChange && props.onChange(props.formData.paceMinute, value);
   };
 
   return (
@@ -39,6 +36,7 @@ function Pace(props) {
             max={59}
             onChange={handleSecondChange}
           />
+          &nbsp;/km
         </div>
       )}
     </div>
