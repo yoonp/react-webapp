@@ -1,34 +1,31 @@
 import React, { useState } from "react";
 
-function Time(props) {
+function Time({ result, isCalculated, formData, setFormData, onChange }) {
   const handleHourChange = (event) => {
     const value =
       event.target.value !== "" ? parseInt(event.target.value, 10) : 0;
-    props.setFormData({ ...props.formData, hour: value });
-    props.onChange &&
-      props.onChange(value, props.formData.minute, props.formData.second);
+    setFormData({ ...formData, hour: value });
+    onChange && onChange(value, formData.minute, formData.second);
   };
 
   const handleMinuteChange = (event) => {
     const value =
       event.target.value !== "" ? parseInt(event.target.value, 10) : 0;
-    props.setFormData({ ...props.formData, minute: value });
-    props.onChange &&
-      props.onChange(props.formData.hour, value, props.formData.second);
+    setFormData({ ...formData, minute: value });
+    onChange && onChange(formData.hour, value, formData.second);
   };
 
   const handleSecondChange = (event) => {
     const value =
       event.target.value !== "" ? parseInt(event.target.value, 10) : 0;
-    props.setFormData({ ...props.formData, second: value });
-    props.onChange &&
-      props.onChange(props.formData.hour, props.formData.minute, value);
+    setFormData({ ...formData, second: value });
+    onChange && onChange(formData.hour, formData.minute, value);
   };
 
   return (
     <div className="inputboxes">
-      {props.isCalculated ? (
-        <div className="input">{props.result?.time}</div>
+      {isCalculated ? (
+        <div className="input">{result?.time}</div>
       ) : (
         <div className="input">
           <input

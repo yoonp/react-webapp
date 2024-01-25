@@ -1,24 +1,24 @@
 import React, { useState } from "react";
 
-function Pace(props) {
+function Pace({ result, isCalculated, formData, setFormData, onChange }) {
   const handleMinuteChange = (event) => {
     const value =
       event.target.value !== "" ? parseInt(event.target.value, 10) : 0;
-      props.setFormData({ ...props.formData, paceMinute: value });
-      props.onChange && props.onChange(value, props.formData.paceSecond);
+    setFormData({ ...formData, paceMinute: value });
+    onChange && onChange(value, formData.paceSecond);
   };
 
   const handleSecondChange = (event) => {
     const value =
       event.target.value !== "" ? parseInt(event.target.value, 10) : 0;
-      props.setFormData({ ...props.formData, paceSecond: value });
-      props.onChange && props.onChange(props.formData.paceMinute, value);
+    setFormData({ ...formData, paceSecond: value });
+    onChange && onChange(formData.paceMinute, value);
   };
 
   return (
     <div className="inputboxes">
-      {props.isCalculated ? (
-        <div className="input">{props.result?.pace}</div>
+      {isCalculated ? (
+        <div className="input">{result?.pace}</div>
       ) : (
         <div className="input">
           <input
