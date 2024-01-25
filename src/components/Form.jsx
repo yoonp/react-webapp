@@ -17,6 +17,7 @@ function Form() {
   const [formData, setFormData] = useState(initialFormData);
   const [isCalculated, setIsCalculated] = useState(false);
   const [result, setResult] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleInputChange = (name, value) => {
     setFormData((prevFormData) => {
@@ -47,12 +48,14 @@ function Form() {
         },
       });
 
+      
+      const result = await response.json();
       if (!response.ok) {
+        result.error && setErrorMessage(result.error);
         throw new Error("Failed to calculate pace");
       }
-
-      const result = await response.json();
-      console.log(result);
+      
+      setErrorMessage(null);
       setResult(result);
       setIsCalculated(true);
     } catch (error) {
@@ -100,6 +103,7 @@ function Form() {
             }
           />
         </div>
+        <div className="error">{errorMessage}</div>
         <Button
           onClick={isCalculated ? resetForm : calculate}
           text={isCalculated ? "Reset" : "Calculate"}

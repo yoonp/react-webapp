@@ -72,6 +72,11 @@ input {
   margin: 20px auto;
 }
 
+.error {
+  height: 20px;
+  color: red;
+}
+
 @media (min-width: 481px) and (max-width: 768px) {
   .App-logo {
     width: 481px;
