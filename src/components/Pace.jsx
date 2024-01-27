@@ -1,18 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 
 function Pace({ result, isCalculated, formData, setFormData, onChange }) {
+
+  const handleInputChange = (name, event) => {
+    const value = event.target.value !== "" ? parseInt(event.target.value, 10) : 0;
+    setFormData((prevFormData) => ({
+      ...prevFormData, 
+      [name]: value
+    }));
+    onChange(formData.paceMinute, formData.paceSecond);
+  };
+
   const handleMinuteChange = (event) => {
-    const value =
-      event.target.value !== "" ? parseInt(event.target.value, 10) : 0;
-    setFormData({ ...formData, paceMinute: value });
-    onChange && onChange(value, formData.paceSecond);
+    handleInputChange("paceMinute", event);
   };
 
   const handleSecondChange = (event) => {
-    const value =
-      event.target.value !== "" ? parseInt(event.target.value, 10) : 0;
-    setFormData({ ...formData, paceSecond: value });
-    onChange && onChange(formData.paceMinute, value);
+    handleInputChange("paceSecond", event);
   };
 
   return (

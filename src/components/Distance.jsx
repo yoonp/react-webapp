@@ -1,7 +1,7 @@
 import React from "react";
 
 function Distance(props) {
-  const handleChange = (event) => {
+  const handleInputChange = (event) => {
     const inputValue =
       event.target.value !== "" ? parseFloat(event.target.value) : 0;
     props.onChange && props.onChange(inputValue);
@@ -17,7 +17,7 @@ function Distance(props) {
             type="number"
             placeholder="km"
             min={0}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
           &nbsp;km
         </div>

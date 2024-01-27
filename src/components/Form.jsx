@@ -27,7 +27,7 @@ function Form() {
       };
     });
   };
-
+  
   const resetForm = () => {
     setFormData(initialFormData);
     setIsCalculated(false);
@@ -58,6 +58,7 @@ function Form() {
       setErrorMessage(null);
       setResult(result);
       setIsCalculated(true);
+
     } catch (error) {
       console.error("Error:", error.message);
     }
@@ -83,11 +84,7 @@ function Form() {
             isCalculated={isCalculated}
             formData={formData}
             setFormData={setFormData}
-            onChange={(hours, minutes, seconds) =>
-              handleInputChange("hour", hours) ||
-              handleInputChange("minute", minutes) ||
-              handleInputChange("second", seconds)
-            }
+            onChange={(name, value) => handleInputChange(name, value)}
           />
           <div className="label">
             <label>Pace :</label>
@@ -97,13 +94,10 @@ function Form() {
             isCalculated={isCalculated}
             formData={formData}
             setFormData={setFormData}
-            onChange={(minute, second) =>
-              handleInputChange("paceMinute", minute) ||
-              handleInputChange("paceSecond", second)
-            }
+            onChange={(name, value) => handleInputChange(name, value)}
           />
         </div>
-        <div className="error">{errorMessage}</div>
+        <div className="error" style={{fontSize: '28px'}}>{errorMessage}</div>
         <Button
           onClick={isCalculated ? resetForm : calculate}
           text={isCalculated ? "Reset" : "Calculate"}

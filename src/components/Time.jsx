@@ -1,27 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
 
 function Time({ result, isCalculated, formData, setFormData, onChange }) {
+  
+  const handleInputChange = (name, event) => {
+    const value = event.target.value !== "" ? parseInt(event.target.value, 10) : 0;
+    setFormData((prevFormData) => ({
+      ...prevFormData, 
+      [name]: value
+    }));
+    onChange(formData.hour, formData.minute, formData.second);
+  };
+  
   const handleHourChange = (event) => {
-    const value =
-      event.target.value !== "" ? parseInt(event.target.value, 10) : 0;
-    setFormData({ ...formData, hour: value });
-    onChange && onChange(value, formData.minute, formData.second);
+    handleInputChange("hour", event);
   };
-
+  
   const handleMinuteChange = (event) => {
-    const value =
-      event.target.value !== "" ? parseInt(event.target.value, 10) : 0;
-    setFormData({ ...formData, minute: value });
-    onChange && onChange(formData.hour, value, formData.second);
+    handleInputChange("minute", event);
   };
-
+  
   const handleSecondChange = (event) => {
-    const value =
-      event.target.value !== "" ? parseInt(event.target.value, 10) : 0;
-    setFormData({ ...formData, second: value });
-    onChange && onChange(formData.hour, formData.minute, value);
+    handleInputChange("second", event);
   };
-
+  
   return (
     <div className="inputboxes">
       {isCalculated ? (

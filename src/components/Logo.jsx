@@ -8,7 +8,6 @@ function Logo() {
         alt="Liberty Runners Logo"
       />
     );
-
   }
 
 export default Logo;
