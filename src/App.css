@@ -75,6 +75,7 @@ input {
 .error {
   height: 20px;
   color: red;
+  font-size: 28px;
 }
 
 @media (min-width: 481px) and (max-width: 768px) {

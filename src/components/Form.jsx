@@ -97,7 +97,7 @@ function Form() {
             onChange={(name, value) => handleInputChange(name, value)}
           />
         </div>
-        <div className="error" style={{fontSize: '28px'}}>{errorMessage}</div>
+        <div className="error">{errorMessage}</div>
         <Button
           onClick={isCalculated ? resetForm : calculate}
           text={isCalculated ? "Reset" : "Calculate"}
