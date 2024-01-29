@@ -1,25 +1,48 @@
-import React, { useState } from "react";
+import React from "react";
 
-function Pace({ onChange }) {
-  const [minute, setMinute] = useState(0);
-  const [second, setSecond] = useState(0);
+function Pace({ result, isCalculated, formData, setFormData, onChange }) {
+
+  const handleInputChange = (name, event) => {
+    const value = event.target.value !== "" ? parseInt(event.target.value, 10) : 0;
+    setFormData((prevFormData) => ({
+      ...prevFormData, 
+      [name]: value
+    }));
+    onChange(formData.paceMinute, formData.paceSecond);
+  };
 
   const handleMinuteChange = (event) => {
-    const value = event.target.value !== "" ? parseInt(event.target.value, 10) : 0;
-    setMinute(value);
-    onChange && onChange(value, second);
+    handleInputChange("paceMinute", event);
   };
 
   const handleSecondChange = (event) => {
-    const value = event.target.value !== "" ? parseInt(event.target.value, 10) : 0;
-    setSecond(value);
-    onChange && onChange(minute, value);
+    handleInputChange("paceSecond", event);
   };
 
   return (
-    <div className="input">
-      <input type="number" placeholder="min" min={0} max={59} onChange={handleMinuteChange} />&nbsp;:&nbsp;
-      <input type="number" placeholder="sec" min={0} max={59} onChange={handleSecondChange} />
+    <div className="inputboxes">
+      {isCalculated ? (
+        <div className="input">{result?.pace}</div>
+      ) : (
+        <div className="input">
+          <input
+            type="number"
+            placeholder="min"
+            min={0}
+            max={59}
+            onChange={handleMinuteChange}
+          />
+          &nbsp;:&nbsp;
+          <input
+            type="number"
+            placeholder="sec"
+            min={0}
+            max={59}
+            onChange={handleSecondChange}
+          />
+          &nbsp;/km
+        </div>
+      )}
     </div>
   );
 }
