@@ -39,7 +39,7 @@ function Form() {
       const { distance, hour, minute, second, paceMinute, paceSecond } =
         formData;
 
-      const url = `http://pcs-env.eba-jgm8xffk.ca-central-1.elasticbeanstalk.com/calculate-pace?distance=${distance}&hour=${hour}&minute=${minute}&second=${second}&paceMinute=${paceMinute}&paceSecond=${paceSecond}`;
+      const url = `https://route.pacecalculatorservice.com/calculate-pace?distance=${distance}&hour=${hour}&minute=${minute}&second=${second}&paceMinute=${paceMinute}&paceSecond=${paceSecond}`;
 
       const response = await fetch(url, {
         method: "GET",
